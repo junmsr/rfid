@@ -9,6 +9,12 @@ body {
     padding: 0;
 }
 
+.label-tag{
+    text-align: center;
+    color: #6a1b9a; /* Medium purple */
+    margin-top: 20px;
+}
+
 h1 {
     text-align: center;
     color: #6a1b9a; /* Medium purple */
@@ -17,14 +23,14 @@ h1 {
 
 /* Input and button styles */
 input, button {
-    display: block;
+    display: flex;
     margin: 10px auto;
     padding: 10px;
     font-size: 16px;
     border: 1px solid #6a1b9a; /* Border color */
     border-radius: 5px; /* Rounded corners */
     outline: none;
-    width: 80%;
+    width: 20%
 }
 
 input:focus {
@@ -32,12 +38,12 @@ input:focus {
     box-shadow: 0 0 5px #ab47bc;
 }
 
-button {
-    background-color: #8e24aa; /* Purple button */
-    color: #fff; /* White text */
+/* button {
+    background-color: #8e24aa;
+    color: #fff; 
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
+} */
 
 button:hover {
     background-color: #7b1fa2; /* Darker purple on hover */
@@ -67,7 +73,7 @@ button:active {
 /* Responsive design for smaller screens */
 @media (max-width: 768px) {
     input, button, #output {
-        width: 90%; /* Adjust width for smaller devices */
+        width: 20%; /* Adjust width for smaller devices */
     }
 }
 

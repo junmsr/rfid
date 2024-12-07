@@ -8,7 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <h1>RFID Lookup Interface</h1>
+    <h1>Attendance</h1>
     
     <!-- Real-time Date and Time -->
     <div id="datetime-container">
@@ -17,9 +17,8 @@
     </div>
 
     <!-- Input for RFID -->
-    <label for="rfid-tag">Enter RFID Tag:</label>
+    <label for="rfid-tag" class="label-tag">Enter RFID Tag:</label>
     <input type="text" id="rfid-tag" name="rfid-tag" placeholder="Scan or Enter RFID">
-    <button id="search">Search</button>
     
     <!-- Output Fields -->
     <div id="output">
@@ -39,7 +38,6 @@
             const time = now.toLocaleTimeString(); // Format: HH:MM:SS AM/PM
             document.getElementById('current-date').textContent = date;
             document.getElementById('current-time').textContent = time;
-            document.getElementById('time').textContent = time;
         }
 
         // Update the time every second
@@ -66,7 +64,6 @@
                                 $("#fname").text(data.fname);
                                 $("#contact").text(data.contact);
                                 $("#gender").text(data.gender);
-                                document.getElementById('time').textContent = time;
                             } else {
                                 alert(data.message);
                             }
