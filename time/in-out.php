@@ -45,38 +45,43 @@
         updateDateTime(); // Call once to initialize immediately
 
         // RFID Lookup AJAX Script
+
         $(document).ready(function() {
-            $("#search").click(function() {
-                var rfid = $("#rfid-tag").val(); // Get RFID input value
+            $("#rfid-tag").on('input', function() {
+                var rfid = $(this).val(); // Get RFID input value
                 
-                // Send AJAX request
-                $.ajax({
-                    url: "fetch.php", // Path to the PHP script
-                    type: "POST",
-                    data: { rfid_tag: rfid }, // Send RFID as data
-                    success: function(response) {
-                        try {
-                            var data = JSON.parse(response); // Parse JSON response
-                            if (data.success) {
-                                // Populate output fields
-                                $("#role").text(data.role);
-                                $("#surname").text(data.surname);
-                                $("#fname").text(data.fname);
-                                $("#contact").text(data.contact);
-                                $("#gender").text(data.gender);
-                            } else {
-                                alert(data.message);
+                // Check if RFID tag is the expected length (e.g., 8 characters)
+                if (rfid.length === 8) {
+                    // Send AJAX request
+                    $.ajax({
+                        url: "fetch&write.php", // Path to the PHP script
+                        type: "POST",
+                        data: { rfid_tag: rfid }, // Send RFID as data
+                        success: function(response) {
+                            try {
+                                var data = JSON.parse(response); // Parse JSON response
+                                if (data.success) {
+                                    // Populate output fields
+                                    $("#role").text(data.role);
+                                    $("#surname").text(data.surname);
+                                    $("#fname").text(data.fname);
+                                    $("#contact").text(data.contact);
+                                    $("#gender").text(data.gender);
+                                } else {
+                                    alert(data.message);
+                                }
+                            } catch (e) {
+                                console.error("Error parsing response: ", e);
                             }
-                        } catch (e) {
-                            console.error("Error parsing response: ", e);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error("AJAX Error: ", error);
                         }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("AJAX Error: ", error);
-                    }
-                });
+                    });
+                }
             });
         });
+
     </script>
 </body>
 </html>
